@@ -1,0 +1,44 @@
+<h2>Books詳細画面です。</h2>
+
+
+<!-- ここからプロフィール画面 -->
+<h3>User info</h3>
+
+<p>User Image</p>
+<p>name</p>
+<p>introduction</p>
+<p>プロフィール編集</p>
+<!-- ここまでプロフィール画面 -->
+
+<!-- ここから新規投稿画面 -->
+<h3>New book</h3>
+
+<%= form_for(@book) do |f| %>
+
+  <p>Title</p>
+    <%= f.text_field :title %>
+  <p>Opinion</p>
+    <%= f.text_area :opinion %>
+  <br>
+    <%= f.submit "Create Book" %>
+
+<% end %>
+<!-- ここまで新規投稿画面 -->
+
+
+<!-- ここから一覧画面	 -->
+<h3>Book detail</h3>
+
+<table>
+  <tr>
+    <td>User Image</td>
+    <td>User Name</td>
+    <td><%= @book.title %></td>
+    <td><%= @book.opinion %></td>
+    <td><%= link_to 'Edit', edit_book_path(@book) %></td>
+    <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか?' } %></td>
+  </tr>
+</table>
+<!-- ここまで一覧画面 -->
+
+

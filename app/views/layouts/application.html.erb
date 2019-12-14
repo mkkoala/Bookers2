@@ -9,7 +9,29 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
+    <header>
+      <ul>
+        <% if user_signed_in? %>
+        <!-- ログインしている場合は -->
+          <li><%= link_to 'Home', user_path(current_user.id) %></li>
+          <li>User</li>
+          <li>Books</li>
+          <li>logout</li>
+          <!-- ログインしないない場合は -->
+        <% else %>
+          <li>Home</li>
+          <li>About</li>
+          <li>sign up</li>
+          <li>login</li>
+        <% end %>
+    </header>
+
     <%= yield %>
+
+    <footer>
+      CopyRight Infratop.inc
+    </footer>
   </body>
 </html>
