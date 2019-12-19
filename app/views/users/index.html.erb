@@ -1,0 +1,37 @@
+<h2>Users画面です。</h2>
+
+
+<!-- ここからプロフィール画面 -->
+<%= render 'users/profile', user: @user %>
+<!-- ここまでプロフィール画面 -->
+
+<!-- ここから新規投稿画面 -->
+<%= render 'books/list', book: @book_new %>
+<!-- ここまで新規投稿画面 -->
+
+
+<!-- ここから一覧画面	 -->
+<h3>Users</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @users.each do |user| %>
+      <tr>
+        <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format:'jpeg', fallback: "no_image.jpeg" %></td>
+        <td><%= user.name %></td>
+        <td><%= link_to "Show", user_path(user) %></td>
+      </tr>
+    <% end %>
+    <%= paginate @users, class: "paginate" %>
+  </tbody>
+</table>
+<!-- ここまで一覧画面 -->
+

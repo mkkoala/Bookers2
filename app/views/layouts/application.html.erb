@@ -4,7 +4,6 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,25 +11,71 @@
 
   <body>
     <header>
-      <ul>
-        <% if user_signed_in? %>
-        <!-- ログインしている場合は -->
-          <li><%= link_to 'Home', user_path(current_user.id) %></li>
-          <li>User</li>
-          <li>Books</li>
-          <li>logout</li>
-          <!-- ログインしないない場合は -->
-        <% else %>
-          <li>Home</li>
-          <li>About</li>
-          <li>sign up</li>
-          <li>login</li>
-        <% end %>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample1">
+              <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand">Bookers</a>
+          </div>
+
+          <div class="collapse navbar-collapse navbar-right" id="navbarEexample1">
+            <ul class="nav navbar-nav">
+              <% if user_signed_in? %>
+              <!-- ログインしている場合は -->
+                <li>
+                  <%= link_to user_path(current_user.id) do %>
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to users_path do %>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>　Users
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to books_path do %>
+                    <span class="glyphicon glyphicon-book" aria-hidden="true"></span>　Books
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　logout
+                  <% end %>
+                </li>
+                <!-- ログインしていない場合は -->
+              <% else %>
+                <li>
+                  <%= link_to root_path do %>
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to home_about_path do %>
+                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>　About
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_user_registration_path do %>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>　sign up
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_user_session_path do %>
+                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>　login
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <%= yield %>
 
-    <footer>
+    <footer class= navbar-right>
       CopyRight Infratop.inc
     </footer>
   </body>
